@@ -15,13 +15,22 @@ const Header = styled.div`
     font-size: 42px;
   }
 `;
-const Subheader = styled.div;
-const Grid = styled.div;
+const Subheader = styled.div`
+  font-weight: 300;
+  font-size: 26px;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  grid-gap: 20px;
+  width: 100%;
+  padding: 20px;
+`;
 const Airlines = () => {
   const [airlines, setAirlines] = useState([]);
   useEffect(() => {
-    //Get all of our airlines from the api
-    //Update airines in our state
     axios
       .get("http://localhost:3000/api/v1/airlines.json")
       .then((resp) => setAirlines(resp.data.data))
@@ -42,9 +51,7 @@ const Airlines = () => {
           <h1>Open Flights</h1>
           <div className="subheader">Honest, unbiased airline reviews</div>
         </Header>
-        <div className="grid">
-          <ul>{grid}</ul>
-        </div>
+        <Grid>{grid}</Grid>
       </Home>
     </Fragment>
   );
